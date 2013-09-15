@@ -1,0 +1,27 @@
+use koodb;
+
+CREATE TABLE IF NOT EXISTS business_unit (
+  id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(256) NOT NULL,
+  category ENUM("Restaurant", "Barber") NOT NULL,
+  sub_category VARCHAR(128),
+  intro VARCHAR(2048) NULL,
+  cover_image INTEGER DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS bu_category (
+  id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  bu_id INTEGER NOT NULL REFERENCES business_unit (id),
+  name VARCHAR(128) NOT NULL,
+  intro VARCHAR(2048) NULL,
+  category_image INTEGER DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS bu_item (
+  id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  bu_id INTEGER NOT NULL REFERENCES business_unit (id),
+  bu_category_id INTEGER NOT NULL REFERENCES bu_category (id),
+  name VARCHAR(128) NOT NULL,
+  intro VARCHAR(2048) NULL,
+  item_image INTEGER DEFAULT 0
+);
