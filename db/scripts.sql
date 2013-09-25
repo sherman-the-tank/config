@@ -2,6 +2,8 @@ use koodb;
 
 CREATE TABLE IF NOT EXISTS business_unit (
   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  login VARCHAR(16) NOT NULL,
+  password VARCHAR(128),
   name VARCHAR(256) NOT NULL,
   category ENUM("Restaurant", "Barber") NOT NULL,
   sub_category VARCHAR(128),
