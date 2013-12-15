@@ -27,3 +27,18 @@ CREATE TABLE IF NOT EXISTS bu_item (
   intro VARCHAR(2048) NULL,
   item_image INTEGER DEFAULT 0
 );
+
+CREATE TABLE IF NOT EXISTS bu_tables (
+  id INTEGER NOT NULL,
+  bu_id INTEGER NOT NULL REFERENCES business_unit (id),
+  capacity INTEGER DEFAULT 2,
+  reserved BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS reservation (
+  id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  bu_id INTEGER NOT NULL REFERENCES business_unit (id),
+  table_id INTEGER NOT NULL,
+  for_date DATE NOT NULL,
+  for_time CHAR(4) NOT NULL
+);
